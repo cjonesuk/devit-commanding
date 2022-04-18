@@ -7,9 +7,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{30D2FB84-1A4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{FF8EBBFB-7EFF-4BCF-8C35-B12A9D33CDCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devit.Commanding", "src\Devit.Commanding\Devit.Commanding.csproj", "{057E7B69-1369-4EF3-A1FD-7811E15CB864}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Devit.Commanding", "src\Devit.Commanding\Devit.Commanding.csproj", "{057E7B69-1369-4EF3-A1FD-7811E15CB864}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{9BEDD219-216D-46B1-82C8-F667BDE3E085}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Devit.Commanding.AspNetCore", "src\Devit.Commanding.AspNetCore\Devit.Commanding.AspNetCore.csproj", "{6B7CFF03-B824-4727-9CE6-62FA27D69E75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devit.Commanding.Tests", "src\Devit.Commanding.Tests\Devit.Commanding.Tests.csproj", "{D4C557FB-B6F8-4414-A88A-A1757CDC1E20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devit.Commanding.AspNetCore.Tests", "src\Devit.Commanding.AspNetCore.Tests\Devit.Commanding.AspNetCore.Tests.csproj", "{33135D9B-E4E9-4B66-AE6F-A9149345B3BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,18 +23,33 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9BEDD219-216D-46B1-82C8-F667BDE3E085}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9BEDD219-216D-46B1-82C8-F667BDE3E085}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{057E7B69-1369-4EF3-A1FD-7811E15CB864}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{057E7B69-1369-4EF3-A1FD-7811E15CB864}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{057E7B69-1369-4EF3-A1FD-7811E15CB864}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{057E7B69-1369-4EF3-A1FD-7811E15CB864}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BEDD219-216D-46B1-82C8-F667BDE3E085}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BEDD219-216D-46B1-82C8-F667BDE3E085}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B7CFF03-B824-4727-9CE6-62FA27D69E75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B7CFF03-B824-4727-9CE6-62FA27D69E75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B7CFF03-B824-4727-9CE6-62FA27D69E75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B7CFF03-B824-4727-9CE6-62FA27D69E75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4C557FB-B6F8-4414-A88A-A1757CDC1E20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4C557FB-B6F8-4414-A88A-A1757CDC1E20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4C557FB-B6F8-4414-A88A-A1757CDC1E20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4C557FB-B6F8-4414-A88A-A1757CDC1E20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33135D9B-E4E9-4B66-AE6F-A9149345B3BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33135D9B-E4E9-4B66-AE6F-A9149345B3BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33135D9B-E4E9-4B66-AE6F-A9149345B3BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33135D9B-E4E9-4B66-AE6F-A9149345B3BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{057E7B69-1369-4EF3-A1FD-7811E15CB864} = {30D2FB84-1A48-4545-8036-DE00A7F0BEE0}
+		{6B7CFF03-B824-4727-9CE6-62FA27D69E75} = {30D2FB84-1A48-4545-8036-DE00A7F0BEE0}
+		{D4C557FB-B6F8-4414-A88A-A1757CDC1E20} = {30D2FB84-1A48-4545-8036-DE00A7F0BEE0}
+		{33135D9B-E4E9-4B66-AE6F-A9149345B3BA} = {30D2FB84-1A48-4545-8036-DE00A7F0BEE0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4E0A0C94-30F1-4CB1-A167-F79F28074553}
