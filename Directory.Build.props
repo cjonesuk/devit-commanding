@@ -1,0 +1,8 @@
+ <Project>
+  <PropertyGroup>
+    <Authors>Christopher Jones</Authors>
+    <RepositoryUrl>https://github.com/cjonesuk/devit-commanding</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/cjonesuk/devit-commanding</PackageProjectUrl>
+    <PackageLicense>https://github.com/cjonesuk/devit-commanding/blob/master/LICENSE</PackageLicense>
+  </PropertyGroup>
+</Project>

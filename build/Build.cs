@@ -35,6 +35,9 @@ class Build : NukeBuild
     AbsolutePath SourceDirectory => RootDirectory / "src";
     AbsolutePath OutputDirectory => RootDirectory / "output";
 
+    Project CommandingProject => Solution.GetProject("Devit.Commanding");
+
+
     Target Clean => _ => _
         .Before(Restore)
         .Executes(() =>
@@ -60,4 +63,21 @@ class Build : NukeBuild
                 .EnableNoRestore());
         });
 
+    Target Test => _ => _
+        .DependsOn(Compile)
+        .Executes(() =>
+        {
+            DotNetTest(o => o.SetProjectFile(Solution));
+        });
+
+    Target Pack => _ => _
+        .DependsOn(Test)
+        .Executes(() =>
+        {
+            DotNetPack(o => o.SetConfiguration(Configuration)
+                             .EnableNoBuild()
+                             .EnableNoRestore()
+                             .SetNoDependencies(true)
+                             .SetOutputDirectory(OutputDirectory / "nuget"));
+        });
 }
