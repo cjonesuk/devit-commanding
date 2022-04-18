@@ -1,3 +1,4 @@
+using System.Linq;
 using Nuke.Common;
 using Nuke.Common.CI;
 using Nuke.Common.Execution;
@@ -21,10 +22,13 @@ class Build : NukeBuild
     ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
     ///   - Microsoft VSCode           https://nuke.build/vscode
 
-    public static int Main () => Execute<Build>(x => x.Compile);
+    public static int Main() => Execute<Build>(x => x.Compile);
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
+
+    [Parameter] string NugetApiUrl = "https://api.nuget.org/v3/index.json"; //default
+    [Parameter] string NugetApiKey;
 
     [Solution] readonly Solution Solution;
     [GitRepository] readonly GitRepository GitRepository;
@@ -32,6 +36,7 @@ class Build : NukeBuild
 
     AbsolutePath SourceDirectory => RootDirectory / "src";
     AbsolutePath OutputDirectory => RootDirectory / "output";
+    AbsolutePath NugetDirectory => OutputDirectory / "nuget";
     Project CommandingProject => Solution.GetProject("Devit.Commanding");
 
     Target Clean => _ => _
@@ -78,7 +83,29 @@ class Build : NukeBuild
                              .EnableNoBuild()
                              .EnableNoRestore()
                              .SetNoDependencies(true)
-                             .SetOutputDirectory(OutputDirectory / "nuget"));
+                             .SetOutputDirectory(NugetDirectory));
         });
 
+    Target Push => _ => _
+       .DependsOn(Pack)
+       .Requires(() => NugetApiUrl)
+       .Requires(() => NugetApiKey)
+       .Requires(() => Configuration.Equals(Configuration.Release))
+       .Executes(() =>
+       {
+           var files = GlobFiles(NugetDirectory, "*.nupkg")
+                .Where(filename => !filename.EndsWith("symbols.nupkg"))
+                .ToArray();
+
+           Assert.NotEmpty(files);
+
+           files.ForEach(filename =>
+           {
+               DotNetNuGetPush(s => s
+                   .SetTargetPath(filename)
+                   .SetSource(NugetApiUrl)
+                   .SetApiKey(NugetApiKey)
+               );
+           });
+       });
 }
