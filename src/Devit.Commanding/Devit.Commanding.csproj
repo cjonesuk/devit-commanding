@@ -3,7 +3,6 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<PackageId>Devit.Commanding</PackageId>
-		<Version>0.1.0</Version>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<Description>Core library providing an abstraction for Commands and Queries building upon MediatR and FluentValidation.</Description>
