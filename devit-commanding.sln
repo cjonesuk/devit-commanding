@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{30D2FB84-1A48-4545-8036-DE00A7F0BEE0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{FF8EBBFB-7EFF-4BCF-8C35-B12A9D33CDCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devit.Commanding", "src\Devit.Commanding\Devit.Commanding.csproj", "{057E7B69-1369-4EF3-A1FD-7811E15CB864}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{9BEDD219-216D-46B1-82C8-F667BDE3E085}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9BEDD219-216D-46B1-82C8-F667BDE3E085}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BEDD219-216D-46B1-82C8-F667BDE3E085}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{057E7B69-1369-4EF3-A1FD-7811E15CB864}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{057E7B69-1369-4EF3-A1FD-7811E15CB864}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{057E7B69-1369-4EF3-A1FD-7811E15CB864}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{057E7B69-1369-4EF3-A1FD-7811E15CB864}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{057E7B69-1369-4EF3-A1FD-7811E15CB864} = {30D2FB84-1A48-4545-8036-DE00A7F0BEE0}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4E0A0C94-30F1-4CB1-A167-F79F28074553}
+	EndGlobalSection
+EndGlobal
