@@ -54,7 +54,7 @@ class Build : NukeBuild
         });
 
     Target Clean => _ => _
-        .Before(Restore)
+        .DependsOn(Startup)
         .Executes(() =>
         {
             SourceDirectory.GlobDirectories("**/bin", "**/obj").ForEach(DeleteDirectory);
@@ -62,6 +62,7 @@ class Build : NukeBuild
         });
 
     Target Restore => _ => _
+        .DependsOn(Clean)
         .Executes(() =>
         {
             DotNetRestore(s => s
