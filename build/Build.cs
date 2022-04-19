@@ -99,11 +99,6 @@ class Build : NukeBuild
        .Requires(() => Configuration.Equals(Configuration.Release))
        .Executes(() =>
        {
-           foreach(var c in NuGetApiKey)
-           {
-               Logger.Info($"Char: {c}");
-           }
-           
            var files = GlobFiles(NugetDirectory, "*.nupkg")
                 .Where(filename => !filename.EndsWith("symbols.nupkg"))
                 .ToArray();
