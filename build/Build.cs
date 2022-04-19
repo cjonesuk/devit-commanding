@@ -24,7 +24,7 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
     OnPushBranches = new[] { "main", "feature/**" },
     OnPullRequestBranches = new[] { "feature/**" },
     InvokedTargets = new[] { nameof(GitHubActions) },
-    ImportSecrets = new[] { "NugetApiKey" })]
+    ImportSecrets = new[] { nameof(NuGetApiKey) })]
 class Build : NukeBuild
 {
     public static int Main() => Execute<Build>(x => x.Default);
@@ -32,8 +32,9 @@ class Build : NukeBuild
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
-    [Parameter] string NugetApiUrl = "https://api.nuget.org/v3/index.json"; //default
-    [Parameter] string NugetApiKey;
+    [Parameter] string NuGetApiUrl = "https://api.nuget.org/v3/index.json";
+    [Secret]
+    [Parameter] string NuGetApiKey;
 
     [Solution] readonly Solution Solution;
     [GitRepository] readonly GitRepository GitRepository;
@@ -42,7 +43,6 @@ class Build : NukeBuild
     AbsolutePath SourceDirectory => RootDirectory / "src";
     AbsolutePath OutputDirectory => RootDirectory / "output";
     AbsolutePath NugetDirectory => OutputDirectory / "nuget";
-    Project CommandingProject => Solution.GetProject("Devit.Commanding");
 
     Target Clean => _ => _
         .Before(Restore)
@@ -93,8 +93,8 @@ class Build : NukeBuild
 
     Target Push => _ => _
        .DependsOn(Pack)
-       .Requires(() => NugetApiUrl)
-       .Requires(() => NugetApiKey)
+       .Requires(() => NuGetApiUrl)
+       .Requires(() => NuGetApiKey)
        .Requires(() => Configuration.Equals(Configuration.Release))
        .Executes(() =>
        {
@@ -108,8 +108,8 @@ class Build : NukeBuild
            {
                DotNetNuGetPush(s => s
                    .SetTargetPath(filename)
-                   .SetSource(NugetApiUrl)
-                   .SetApiKey(NugetApiKey)
+                   .SetSource(NuGetApiUrl)
+                   .SetApiKey(NuGetApiKey)
                );
            });
        });

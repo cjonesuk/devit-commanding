@@ -46,9 +46,6 @@
           "type": "boolean",
           "description": "Disables displaying the NUKE logo"
         },
-        "NugetApiKey": {
-          "type": "string"
-        },
         "NugetApiUrl": {
           "type": "string"
         },
