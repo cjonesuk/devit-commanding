@@ -85,6 +85,7 @@
               "Pack",
               "Push",
               "Restore",
+              "Startup",
               "Test"
             ]
           }
@@ -106,6 +107,7 @@
               "Pack",
               "Push",
               "Restore",
+              "Startup",
               "Test"
             ]
           }

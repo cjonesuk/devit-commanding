@@ -13,8 +13,8 @@ using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.IO.PathConstruction;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
-[DotNetVerbosityMapping]
-[UnsetVisualStudioEnvironmentVariables]
+//[DotNetVerbosityMapping]
+//[UnsetVisualStudioEnvironmentVariables]
 [CheckBuildProjectConfigurations]
 [ShutdownDotNetAfterServerBuild]
 [GitHubActions(
@@ -33,16 +33,25 @@ class Build : NukeBuild
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
     [Parameter] string NuGetApiUrl = "https://api.nuget.org/v3/index.json";
-    [Secret]
-    [Parameter] string NuGetApiKey;
+    [Parameter][Secret] string NuGetApiKey;
 
     [Solution] readonly Solution Solution;
     [GitRepository] readonly GitRepository GitRepository;
     [GitVersion] readonly GitVersion GitVersion;
 
+    
+
     AbsolutePath SourceDirectory => RootDirectory / "src";
     AbsolutePath OutputDirectory => RootDirectory / "output";
     AbsolutePath NugetDirectory => OutputDirectory / "nuget";
+
+    Target Startup => _ => _
+        .Before(Clean)
+        .Executes(() =>
+        {
+            Logger.Info("Hello World");
+            Logger.Info($"Api Key: '{NuGetApiKey}'");
+        });
 
     Target Clean => _ => _
         .Before(Restore)
@@ -93,8 +102,8 @@ class Build : NukeBuild
 
     Target Push => _ => _
        .DependsOn(Pack)
-       .Requires(() => NuGetApiUrl)
-       .Requires(() => NuGetApiKey)
+       .Requires(() => !string.IsNullOrWhiteSpace(NuGetApiUrl))
+       .Requires(() => !string.IsNullOrWhiteSpace(NuGetApiKey))
        .Requires(() => Configuration.Equals(Configuration.Release))
        .Executes(() =>
        {
