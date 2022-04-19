@@ -13,8 +13,8 @@ using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.IO.PathConstruction;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
-//[DotNetVerbosityMapping]
-//[UnsetVisualStudioEnvironmentVariables]
+[DotNetVerbosityMapping]
+[UnsetVisualStudioEnvironmentVariables]
 [CheckBuildProjectConfigurations]
 [ShutdownDotNetAfterServerBuild]
 [GitHubActions(
