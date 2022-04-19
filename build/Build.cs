@@ -33,7 +33,7 @@ class Build : NukeBuild
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
     [Parameter] string NuGetApiUrl = "https://api.nuget.org/v3/index.json";
-    [Parameter][Secret] string NuGetApiKey;
+    [Parameter] string NuGetApiKey;
 
     [Solution] readonly Solution Solution;
     [GitRepository] readonly GitRepository GitRepository;
