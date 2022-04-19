@@ -47,8 +47,7 @@
           "description": "Disables displaying the NUKE logo"
         },
         "NuGetApiKey": {
-          "type": "string",
-          "default": "Secrets must be entered via 'nuke :secrets [profile]'"
+          "type": "string"
         },
         "NuGetApiUrl": {
           "type": "string"
