@@ -33,7 +33,7 @@ class Build : NukeBuild
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
     [Parameter] string NuGetApiUrl = "https://api.nuget.org/v3/index.json";
-    [Parameter] string NuGetApiKey;
+    [Parameter] [Secret] string NuGetApiKey;
 
     [Solution] readonly Solution Solution;
     [GitRepository] readonly GitRepository GitRepository;
@@ -45,16 +45,8 @@ class Build : NukeBuild
     AbsolutePath OutputDirectory => RootDirectory / "output";
     AbsolutePath NugetDirectory => OutputDirectory / "nuget";
 
-    Target Startup => _ => _
-        .Before(Clean)
-        .Executes(() =>
-        {
-            Logger.Info("Hello World");
-            Logger.Info($"Api Key: '{NuGetApiKey}'");
-        });
-
     Target Clean => _ => _
-        .DependsOn(Startup)
+        .Before(Restore)
         .Executes(() =>
         {
             SourceDirectory.GlobDirectories("**/bin", "**/obj").ForEach(DeleteDirectory);
@@ -62,7 +54,6 @@ class Build : NukeBuild
         });
 
     Target Restore => _ => _
-        .DependsOn(Clean)
         .Executes(() =>
         {
             DotNetRestore(s => s
@@ -108,6 +99,11 @@ class Build : NukeBuild
        .Requires(() => Configuration.Equals(Configuration.Release))
        .Executes(() =>
        {
+           foreach(var c in NuGetApiKey)
+           {
+               Logger.Info($"Char: {c}");
+           }
+           
            var files = GlobFiles(NugetDirectory, "*.nupkg")
                 .Where(filename => !filename.EndsWith("symbols.nupkg"))
                 .ToArray();
