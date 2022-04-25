@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<PackageId>Devit.Commanding.Contracts</PackageId>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<RootNamespace>Devit.Commanding</RootNamespace>
+		<Description>Contracts for the Devit.Commanding library.</Description>
+		<PackageTags>commands,commanding,mediator</PackageTags>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="FluentResults" Version="3.5.0" />
+		<PackageReference Include="MediatR.Contracts" Version="1.0.1" />
+	</ItemGroup>
+
+</Project>
