@@ -16,4 +16,8 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Devit.Commanding.Contracts\Devit.Commanding.Contracts.csproj" />
+	</ItemGroup>
+
 </Project>
